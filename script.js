@@ -8,8 +8,14 @@
 function computeGrades() {
     //get input id
     const marks = parseInt(document.getElementById('marks').value);
-    let grade;
-    if (marks >= 80) {
+    let grade = "";
+
+    if (isNaN(marks) || marks < 0 || marks > 100) {
+        alert("please enter 0 to 100")
+        grade = "not valid "
+    }
+
+    else if (marks >= 80) {
         grade = " A  Good Job!";
     } else if (marks >= 60 && marks <= 79) {
         grade = "B";
@@ -18,12 +24,16 @@ function computeGrades() {
 
     } else if (marks >= 40 && marks <= 49) {
         grade = "D try another time!";
-    } else {
+    }
+
+    else {
         grade = "E yes you can!";
     }
+
     //display grades
+
     document.getElementById("grade").textContent =
-        `Your grade is: ${grade}`;
+        `Your grade is: ${grade} `;
 
 }
 
@@ -70,9 +80,12 @@ function netIncome() {
     const benefitsElements = parseFloat(document.getElementById('benefit').value);
 
     //compute for Tax
-    let tax = Math.floor((incomeElement + benefitsElements) * .25);
+    let tax = Math.floor((incomeElement + benefitsElements) * .20);
+
+    // payment of On the first Shs. 24,000 10%
     //N.H.I.F
-    let nhif = Math.floor(incomeElement * .02);
+    let nhif = Math.floor(incomeElement * .05);
+    // nhif 5%
     //nssf
     let nssf = Math.floor(incomeElement * .12);
     let netSalary = incomeElement
